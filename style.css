@@ -43,9 +43,85 @@ body {
     linear-gradient(180deg, #f8fbf5 0%, var(--bg) 100%);
 }
 
+a {
+  color: inherit;
+}
+
+.top-nav {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  width: min(1120px, calc(100% - 32px));
+  margin: 0 auto;
+  padding: 14px 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  color: var(--ink);
+  backdrop-filter: blur(18px);
+}
+
+.top-nav::before {
+  content: "";
+  position: absolute;
+  inset: 8px -12px;
+  z-index: -1;
+  border: 1px solid rgba(217, 227, 216, 0.72);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.72);
+  box-shadow: 0 14px 40px rgba(23, 33, 27, 0.1);
+}
+
+body.dark-theme .top-nav::before {
+  border-color: rgba(49, 65, 52, 0.86);
+  background: rgba(14, 20, 15, 0.78);
+  box-shadow: 0 14px 40px rgba(0, 0, 0, 0.28);
+}
+
+.nav-brand,
+.nav-links a {
+  text-decoration: none;
+}
+
+.nav-brand {
+  font-size: 0.95rem;
+  font-weight: 800;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.nav-links a {
+  padding: 9px 12px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  color: var(--green-dark);
+  font-size: 0.82rem;
+  font-weight: 800;
+  background: rgba(255, 255, 255, 0.38);
+  transition: color 160ms ease, background 160ms ease;
+}
+
+.nav-links a:hover {
+  color: #ffffff;
+  background: var(--green-dark);
+}
+
+body.dark-theme .nav-links a {
+  background: rgba(24, 35, 27, 0.58);
+}
+
+body.dark-theme .nav-links a:hover {
+  color: #102015;
+}
+
 .app-shell {
   width: min(1120px, calc(100% - 32px));
-  min-height: calc(100vh - 64px);
+  min-height: calc(100vh - 120px);
   margin: 0 auto;
   display: grid;
   grid-template-columns: 0.85fr 1.15fr;
@@ -514,6 +590,31 @@ body.dark-theme .result-card {
 }
 
 @media (max-width: 620px) {
+  .top-nav {
+    width: min(100% - 16px, 1120px);
+    flex-direction: column;
+    align-items: stretch;
+    padding: 10px 0;
+  }
+
+  .top-nav::before {
+    inset: 5px -8px;
+  }
+
+  .nav-brand {
+    text-align: center;
+  }
+
+  .nav-links {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .nav-links a {
+    text-align: center;
+    padding: 10px 8px;
+  }
+
   .app-shell {
     width: min(100% - 16px, 1120px);
     padding: 8px 0 18px;
