@@ -1,5 +1,8 @@
+
 # Charging Prediction
 
+<img width="800" height="500" alt="Screenshot 2026-06-20 at 12 43 43 AM" src="https://github.com/user-attachments/assets/a55b0ba9-11b9-423f-afb7-3e924fce031b" />
+<img width="800" height="500" alt="Screenshot 2026-06-20 at 12 43 58 AM" src="https://github.com/user-attachments/assets/cca4e46f-8ef9-4c31-8cef-5b07ba5a27cb" />
 A simple static web app that predicts charging time for any rechargeable device, such as a phone, laptop, tablet, or power bank.
 
 ## Features
