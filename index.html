@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Charging Prediction</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="app-shell">
+    <section class="intro-panel">
+      <p class="eyebrow">Device Charging Tool</p>
+      <h1>Charging Prediction</h1>
+      <p class="intro-copy">
+        Save a real charging example for any device, then predict how long it needs to reach your battery goal.
+      </p>
+
+      <div class="battery-visual" aria-hidden="true">
+        <div class="battery-cap"></div>
+        <div class="battery-body">
+          <div class="battery-fill"></div>
+          <span>75%</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="calculator-panel" aria-labelledby="calculator-title">
+      <div class="panel-header">
+        <h2 id="calculator-title">Prediction Inputs</h2>
+        <button id="themeToggle" class="icon-button" type="button" aria-pressed="false">Dark</button>
+      </div>
+
+      <form id="predictionForm" class="prediction-form">
+        <fieldset>
+          <legend>Device</legend>
+          <label>
+            Device name
+            <span class="input-wrap">
+              <input id="deviceName" type="text" placeholder="Laptop, tablet, power bank..." value="My Device" required>
+            </span>
+          </label>
+        </fieldset>
+
+        <fieldset>
+          <legend>Charging example</legend>
+          <div class="input-grid">
+            <label>
+              Started at
+              <span class="input-wrap">
+                <input id="sampleStart" type="number" min="0" max="99" step="1" value="10" required>
+                <span>%</span>
+              </span>
+            </label>
+
+            <label>
+              After
+              <span class="input-wrap">
+                <input id="sampleMinutes" type="number" min="1" step="1" value="60" required>
+                <span>mins</span>
+              </span>
+            </label>
+
+            <label>
+              Became
+              <span class="input-wrap">
+                <input id="sampleEnd" type="number" min="1" max="100" step="1" value="75" required>
+                <span>%</span>
+              </span>
+            </label>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>Your target</legend>
+          <div class="input-grid two-columns">
+            <label>
+              Current battery
+              <span class="input-wrap">
+                <input id="currentPercent" type="number" min="0" max="99" step="1" value="15" required>
+                <span>%</span>
+              </span>
+            </label>
+
+            <label>
+              Goal battery
+              <span class="input-wrap">
+                <input id="goalPercent" type="number" min="1" max="100" step="1" value="90" required>
+                <span>%</span>
+              </span>
+            </label>
+          </div>
+        </fieldset>
+
+        <div class="button-row">
+          <button type="submit">Predict Charging Time</button>
+          <button id="saveDevice" class="secondary-button" type="button">Save Device</button>
+          <button id="resetForm" class="ghost-button" type="button">Reset</button>
+        </div>
+      </form>
+
+      <div id="result" class="result-card" role="status" aria-live="polite">
+        <span class="result-label">Estimated time</span>
+        <strong id="estimatedTime">1 hr 9 mins</strong>
+        <p id="resultDetails">Charging rate: 1.08% per minute. Need 75% more to reach 90%.</p>
+        <div class="progress-block" aria-hidden="true">
+          <div class="progress-meta">
+            <span id="progressStart">15%</span>
+            <span id="progressGoal">90%</span>
+          </div>
+          <div class="progress-track">
+            <div id="progressFill" class="progress-fill"></div>
+          </div>
+        </div>
+      </div>
+
+      <section class="saved-panel" aria-labelledby="saved-title">
+        <h3 id="saved-title">Saved Devices</h3>
+        <div id="savedDevices" class="saved-devices"></div>
+      </section>
+
+      <section class="history-panel" aria-labelledby="history-title">
+        <div class="section-header">
+          <h3 id="history-title">Charging History</h3>
+          <button id="clearHistory" class="text-button" type="button">Clear</button>
+        </div>
+        <div id="historyList" class="history-list"></div>
+      </section>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    Credit: Charles Pura 2026
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
